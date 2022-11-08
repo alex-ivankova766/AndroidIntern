@@ -12,24 +12,24 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/simple_text_view" />
+        android:text="@string/hello_world" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/simple_text_view" />
+        android:text="@string/hello_world" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/simple_text_view" />
+        android:text="@string/hello_world" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/simple_edit_text"
+        android:hint="@string/edit_text"
 
     <ImageView
         android:id="@+id/imageViewAndroidIcon"
@@ -41,6 +41,6 @@
         android:id="@+id/button_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_ok" />
+        android:text="@string/ok" />
 
 </LinearLayout>
