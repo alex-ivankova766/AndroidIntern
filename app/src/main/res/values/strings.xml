@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">AndroidIntern</string>
-    <string name="text_view">TextView</string>
+    <string name="text_view1">TextView1</string>
+    <string name="text_view2">TextView2</string>
+    <string name="text_view3">TextView3</string>
     <color name="red">#ff1100</color>
     <color name="yellow">#fcf800</color>
+    <color name="green">#16f700</color>
 </resources>
