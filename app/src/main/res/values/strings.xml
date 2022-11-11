@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">AndroidIntern</string>
-    <string name="hello_world">Hello world!</string>
     <string name="edit_text">Edit text...</string>
     <string name="ok">OK</string>
-    <string name="ok_clicked">Нажата OK</string>
 </resources>

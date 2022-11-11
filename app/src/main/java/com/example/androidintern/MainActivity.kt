@@ -6,7 +6,6 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import timber.log.Timber
 
-
 private const val LOG_TAG = "MY LOG"
 
 class MainActivity : AppCompatActivity() {
