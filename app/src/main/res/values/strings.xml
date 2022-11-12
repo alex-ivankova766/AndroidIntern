@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">AndroidIntern</string>
     <string name="button">Button</string>
-    <string name="button_pressed">The button is pressed</string>
-    <string name="text_view">Text view</string>
+    <string name="text_view">Empty</string>
 </resources>
