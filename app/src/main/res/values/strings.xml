@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">AndroidIntern</string>
-    <string name="button">Button</string>
-    <string name="text_view">Empty</string>
 </resources>
