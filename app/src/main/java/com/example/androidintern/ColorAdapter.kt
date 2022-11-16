@@ -1,31 +1,56 @@
-//package com.example.androidintern
-//
-//import android.view.LayoutInflater
-//import android.view.View
-//import android.view.ViewGroup
-//import android.widget.TextView
-//import androidx.recyclerview.widget.RecyclerView
-//
-//class ColorAdapter(private val colorList: ColorData) : RecyclerView.Adapter<ColorHolder>() {
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ColorHolder {
-//        val itemView =
-//            LayoutInflater.from(parent.context).inflate(R.layout.item_color, parent, false)
-//        return ColorHolder(itemView)
-//    }
-//
-//    override fun onBindViewHolder(holder: ColorHolder, position: Int) {
-//        holder.bind(colorList.colorNames[position])
-//    }
-//
-//    override fun getItemCount(): Int {
-//        return colorList.colorNames.size
-//    }
-//}
-//
-//class ColorHolder(colorView: View) : RecyclerView.ViewHolder(colorView) {
-//    private var tvColor: TextView = colorView.findViewById(R.id.tvColor)
-//    fun bind(colorName: String) {
-//        tvColor.text = colorName
-//        tvColor.setBackgroundResource(ColorValueMap.getValue(colorName))
-//    }
-//}
+package com.example.androidintern
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+
+val colorValueMap = mapOf(
+    "Red" to R.color.red,
+    "Orange" to R.color.orange,
+    "Yellow" to R.color.yellow,
+    "Green" to R.color.green,
+    "Lightblue" to R.color.lightblue,
+    "Blue" to R.color.blue,
+    "Purple" to R.color.purple
+)
+
+class ColorAdapter(
+    private val colorList: List<String>,
+    private var callBackListener: Listener
+) : RecyclerView.Adapter<ColorAdapter.ColorHolder>() {
+    interface Listener {
+        fun onClick(data: String)
+    }
+
+    class ColorHolder(colorView: View) : RecyclerView.ViewHolder(colorView) {
+        private var tvColor: TextView = colorView.findViewById(R.id.tvColor)
+
+        fun bind(colorName: String, callBackListener: Listener) {
+            tvColor.text = colorName
+            tvColor.setBackgroundResource(colorValueMap.getValue(colorName))
+            itemView.setOnClickListener {
+                callBackListener.onClick(colorName)
+            }
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ColorHolder {
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_color, parent, false)
+        return ColorHolder(itemView)
+    }
+
+    override fun onBindViewHolder(holder: ColorHolder, position: Int) {
+        holder.bind(colorList[position], callBackListener)
+    }
+
+    override fun getItemCount(): Int {
+        return colorList.size
+    }
+
+
+}
+
+
