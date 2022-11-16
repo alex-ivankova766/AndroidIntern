@@ -49,8 +49,6 @@ class ColorAdapter(
     override fun getItemCount(): Int {
         return colorList.size
     }
-
-
 }
 
 
