@@ -18,23 +18,8 @@ val colorValueMap = mapOf(
 
 class ColorAdapter(
     private val colorList: List<String>,
-    private var callBackListener: Listener
+    private var callBackListener: (String) -> Unit
 ) : RecyclerView.Adapter<ColorAdapter.ColorHolder>() {
-    interface Listener {
-        fun onClick(data: String)
-    }
-
-    class ColorHolder(colorView: View) : RecyclerView.ViewHolder(colorView) {
-        private var tvColor: TextView = colorView.findViewById(R.id.tvColor)
-
-        fun bind(colorName: String, callBackListener: Listener) {
-            tvColor.text = colorName
-            tvColor.setBackgroundResource(colorValueMap.getValue(colorName))
-            itemView.setOnClickListener {
-                callBackListener.onClick(colorName)
-            }
-        }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ColorHolder {
         val itemView =
@@ -48,6 +33,18 @@ class ColorAdapter(
 
     override fun getItemCount(): Int {
         return colorList.size
+    }
+
+    class ColorHolder(colorView: View) : RecyclerView.ViewHolder(colorView) {
+        private var tvColor: TextView = colorView.findViewById(R.id.tvColor)
+
+        fun bind(colorName: String, callBackListener: (String) -> Unit) {
+            tvColor.text = colorName
+            tvColor.setBackgroundResource(colorValueMap.getValue(colorName))
+            itemView.setOnClickListener {
+                callBackListener(colorName)
+            }
+        }
     }
 }
 
