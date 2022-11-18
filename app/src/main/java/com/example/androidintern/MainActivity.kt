@@ -1,38 +1,47 @@
 package com.example.androidintern
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import java.io.BufferedReader
+import java.io.InputStream
+import java.io.InputStreamReader
+import java.net.URL
+import javax.net.ssl.HttpsURLConnection
+import timber.log.Timber
 
-class MainActivity(
-    val colorList: List<String> = listOf(
-        "Red",
-        "Orange",
-        "Yellow",
-        "Green",
-        "Lightblue",
-        "Blue",
-        "Purple"
-    )
-) : AppCompatActivity() {
+private const val LOG_TAG = "MY_LOG"
+
+class MainActivity() : AppCompatActivity() {
+    private val url: URL =
+        URL("https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=ff49fcd4d4a08aa6aafb6ea3de826464&tags=cat&format=json&nojsoncallback=1")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initRV()
+        Thread {
+            val content = getContent(url)
+            Timber.tag(LOG_TAG).d("$content")
+        }.start()
     }
 
-    private fun initRV() {
-        val recycleView: RecyclerView = findViewById(R.id.rvColors)
-        recycleView.layoutManager = LinearLayoutManager(this)
-        recycleView.adapter = ColorAdapter(colorList) { data: String ->
-            Toast.makeText(
-                this,
-                data,
-                Toast.LENGTH_SHORT
-            ).show()
+    private fun getContent(url: URL): Any {
+        val connection = url.openConnection() as HttpsURLConnection
+        try {
+            connection.requestMethod = "GET"
+            connection.readTimeout = 10000
+            connection.connect()
+            val stream = connection.inputStream
+            val reader = BufferedReader(InputStreamReader(stream))
+            val buf = StringBuilder()
+            do {
+                val line: String? = reader.readLine()
+                buf.append(line).append("\n")
+            } while (reader.readLine() != null)
+            return (buf.toString())
+        } finally {
+            (null as BufferedReader?)?.close()
+            (null as InputStream?)?.close()
+            connection.disconnect()
         }
     }
 }
-
