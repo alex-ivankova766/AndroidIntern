@@ -2,9 +2,7 @@ package com.example.androidintern
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import java.io.BufferedReader
-import java.io.InputStream
-import java.io.InputStreamReader
+import java.io.BufferedInputStream
 import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 import timber.log.Timber
@@ -19,29 +17,15 @@ class MainActivity() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Thread {
-            val content = getContent(url)
-            Timber.tag(LOG_TAG).d("$content")
+            val urlConnection = url.openConnection() as HttpsURLConnection
+            try {
+                BufferedInputStream(urlConnection.inputStream).bufferedReader().use {
+                    Timber.tag(LOG_TAG).d(it.readText())
+                }
+            } finally {
+                urlConnection.disconnect()
+            }
         }.start()
     }
 
-    private fun getContent(url: URL): Any {
-        val connection = url.openConnection() as HttpsURLConnection
-        try {
-            connection.requestMethod = "GET"
-            connection.readTimeout = 10000
-            connection.connect()
-            val stream = connection.inputStream
-            val reader = BufferedReader(InputStreamReader(stream))
-            val buf = StringBuilder()
-            do {
-                val line: String? = reader.readLine()
-                buf.append(line).append("\n")
-            } while (reader.readLine() != null)
-            return (buf.toString())
-        } finally {
-            (null as BufferedReader?)?.close()
-            (null as InputStream?)?.close()
-            connection.disconnect()
-        }
-    }
 }
