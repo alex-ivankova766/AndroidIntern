@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AndroidIntern</string>
+    <string name="error">Something wrong</string>
 </resources>
