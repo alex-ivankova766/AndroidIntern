@@ -4,23 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvResult"
-        android:layout_width="match_parent"
-        android:layout_height="161dp"
-        android:textSize="40sp"/>
-
-    <EditText
-        android:id="@+id/edt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/edit_text"/>
-
     <Button
-        android:id="@+id/bt"
+        android:id="@+id/btActivitySwitch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/button" />
+        android:gravity="center"
+        android:text="@string/button_switch"/>
 </LinearLayout>
 
 

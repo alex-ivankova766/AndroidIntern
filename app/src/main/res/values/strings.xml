@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">AndroidIntern</string>
-    <string name="button">Put on board</string>
-    <string name="edit_text">This text...</string>
+    <string name="button_switch">Switch to new Activity</string>
 </resources>
