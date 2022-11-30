@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">AndroidIntern</string>
     <string name="error">Something wrong</string>
+    <string name="name">Name:</string>
+    <string name="type">Type:</string>
+    <string name="phone">Phone:</string>
+    <string name="apply_filter">Apply filter</string>
+    <string name="filtered_by">Filtered by...</string>
 </resources>

@@ -4,11 +4,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCats"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <EditText
+        android:id="@+id/etFilterText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/filtered_by" />
 
+    <Button
+        android:id="@+id/btApply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/apply_filter" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPhones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
 
