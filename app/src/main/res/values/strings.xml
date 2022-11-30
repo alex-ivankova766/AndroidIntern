@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">AndroidIntern</string>
-    <string name="button_switch">Switch to new Activity</string>
+    <string name="error">Something wrong</string>
 </resources>
